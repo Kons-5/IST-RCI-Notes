@@ -1,0 +1,297 @@
+\author{João Gonçalves}
+\newcommand{\authorr}{Teresa Nogueira}
+\newcommand{\studentID}{99995}
+\newcommand{\studentIDD}{100029}
+%\newcommand{\supervisorone}{Prof\textsuperscript{\underline{a}}. XXXXXX}
+\newcommand{\supervisorone}{}
+\newcommand{\supervisortwo}{}
+\newcommand{\department}{Engenharia Eletrotécnica e de Computadores}
+\newcommand{\exam}{Redes de Computadores e Internet}
+
+\title{%
+Apontamentos sobre RCI\\
+\large (Alguns tópicos \href{https://github.com/Kons-5}{\raisebox{0 em}{\large \faGithub}})}
+\date{Fevereiro 2023}
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=25mm,top=21mm,right=25mm,bottom=21mm]{geometry}
+\usepackage[flushmargin,hang,bottom,multiple]{footmisc}
+\usepackage[usestackEOL]{stackengine}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome5,textcomp}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\usepackage[export]{adjustbox}
+\usepackage{graphicx,array,tabularx}
+\usepackage{float,wrapfig}
+\usepackage[font=footnotesize]{caption}
+\usepackage[justification=centering]{subcaption}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{mathabx}
+\usepackage{physics}
+\usepackage{cancel}
+
+\usepackage{pgfplots}
+\usepackage{msc}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{enumitem}
+
+\usepackage[linktoc=all]{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[square,numbers,sort]{natbib}
+\usepackage{breakurl}
+\usepackage{placeins}
+\usepackage{colortbl}
+\usepackage{attrib}
+\usepackage{multirow,multicol}
+
+%\usepackage[printwatermark]{xwatermark}
+\usepackage[framemethod=TikZ]{mdframed}
+%\tcbuselibrary{skins,breakable}
+%\usetikzlibrary{shadings,shadows}
+\linespread{1}
+%\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!50!black}
+}
+
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\fboxsep}{1.25\fboxsep}
+
+\let\zzzfootnotesize\footnotesize
+\def\newfootnotesize{%
+\zzzfootnotesize
+\abovedisplayskip=0pt
+\belowdisplayskip=\abovedisplayskip
+\abovedisplayshortskip=\abovedisplayskip
+\belowdisplayshortskip=\abovedisplayskip
+}
+\renewcommand\footnotesize{\protect\newfootnotesize}
+
+\mdfsetup{%
+    linewidth=2pt
+}
+%//==============================--@--==============================//%
+%                         -> error messages <-                        %
+\usepackage{pifont}
+
+\newenvironment{warning}
+  {\par\begin{mdframed}[linewidth=1.5pt,linecolor=red]%
+    \begin{list}{}{\leftmargin=0.9cm
+                   \labelwidth=\leftmargin}\item[\raisebox{-0.4 em}{\Large\ding{43}}]}
+  {\end{list}\end{mdframed}\par}
+
+%//==============================--@--==============================//%
+%                   -> reduzir espaço entre itens <-                  %
+\usepackage{enumitem}
+%\setlist[itemize]{nosep}
+%\setlist[enumerate]{nosep}
+\setlist[itemize]{itemsep=0.0125em}
+\setlist[enumerate]{itemsep=0.0125em}
+%//==============================METH-==============================//%
+\newcounter{theo}[section]\setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{theo}}
+
+%\definecolor{tempcolor}{RGB}{113, 110, 97}
+\definecolor{tempcolor}{RGB}{0, 0, 0}
+\newenvironment{theo}[2][]{%
+    \refstepcounter{theo}
+    \ifstrempty{#1}%
+    % if condition (without title)
+    {\mdfsetup{%
+        frametitle={%
+            \tikz[baseline=(current bounding box.east),outer sep=0pt]
+            \node[anchor=east,rectangle,fill=blue!20]
+            {\strut Teorema~\thetheo};}
+        }%
+    % else condition (with title)
+    }{\mdfsetup{%
+        frametitle={%
+            \tikz[baseline=(current bounding box.east),outer sep=0pt]
+            \node[anchor=east,rectangle,fill=white]
+            {\strut #1};}%
+        }%
+    }%
+    % Both conditions
+    \mdfsetup{%
+        innertopmargin=0pt,linecolor=tempcolor,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=1.25\dimexpr-\ht\strutbox\relax%
+    }
+ 
+\begin{mdframed}[]\relax\vspace{-0.5em}}{%
+\end{mdframed}}
+
+\def\delequal{\mathrel{\ensurestackMath{\stackon[1pt]{=}{\scriptstyle\Delta}}}}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+%------------------------------------ MAGIC--------------------------------------
+\def\UrlBreaks{\do\/\do-}
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\a%
+\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\&}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%----------------------------------TITLE PAGE -----------------------------------
+\makeatletter
+\def\maketitle{
+  \begin{center}\leavevmode
+        \normalfont
+        \includegraphics[width=0.5\columnwidth]{img/title-page/IST.pdf}
+        \vskip 0.05cm   
+        \textsc{\large \department}\\
+        \vskip 0.5cm
+        \rule{0.95\linewidth}{0.2 mm} %\\
+        {\large \exam}\\[0.5 cm]
+        {\huge \bfseries \@title \par} 
+        \vspace{1em}
+        \includegraphics[scale=0.4]{img/title-page/000.png}
+        \vspace{-0.5em}
+        \captionof*{figure}{\color{gray} Imagem: \textit{Illustrative file distribution problem $[$Kurose \& Ross $2017]$}}
+        %\vspace{0.5cm}
+        \rule{0.95\linewidth}{0.2 mm} \\[0.75 cm]
+        %\fontsize{9pt}{11pt}\selectfont
+        \begin{minipage}[t]{1\textwidth}
+	   \begin{flushleft} \large
+                \emph{Autores:}\\
+			\normalsize \textbf{\@author} : \studentID\\
+                \fontsize{9pt}{11pt}\selectfont $\hookrightarrow$ jrazevedogoncalves@tecnico.ulisboa.pt \\
+                \normalsize \textbf{\authorr} : \studentIDD\\
+                \scriptsize $\hookrightarrow$ maria.teresa.ramos.nogueira@tecnico.ulisboa.pt
+		\end{flushleft}
+	\end{minipage}
+	\vfill
+        ``\textit{Let us reflect on the brief life of a bit}.''
+        \vfill
+	{\Large \@date\par}
+   \end{center}
+   %\vfill
+   %\null
+   \cleardoublepage
+  }
+\makeatother
+%-------------------------------- ENDTITLE PAGE ----------------------------------
+%---> Header <---
+%\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}% Header rule width
+\renewcommand{\footrulewidth}{0pt}% No footer rule
+\setlength\headheight{26pt} 
+\fancyhead[L]{\raisebox{0.1\height}[0pt][0pt]{\textit{Redes de Computadores e Internet}}}
+\fancyhead[R]{\raisebox{0.1\height}[0pt][0pt]{2022/2023}}
+%%%%%%%%%%%%%%%%%
+
+\pgfplotsset{compat=1.18}
+\setcounter{tocdepth}{3}
+%\setcounter{secnumdepth}{4}
+\setcounter{secnumdepth}{-2}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tab.}
+\renewcommand{\contentsname}{Índice}
+\settocbibname{\raisebox{0em}{Referências}}
+\setlength{\bibsep}{0.1em}%reduzir espaço entre refs.
+
+%\renewcommand{\bibpreamble}{\vspace{-8em}}
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforesecskip}{1em}
+
+%\usepackage{pdfpages}
+% \newwatermark[page=15,fontfamily=bch,color=red!50,angle=45,scale=3.5,xpos=-10,ypos=10]{TO BE ADDED}
+
+
+\begin{document}
+    \sloppy
+    %% title page
+    \pagenumbering{gobble}
+    \maketitle
+    %% toc
+    \tableofcontents
+    \setcounter{tocdepth}{4}
+    %% body
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    
+    \clearpage
+    \section{1. Introdução às Redes de Computadores e à Internet}\label{sec:intro}%
+        \input{src/1/conceitos-fundamentais}
+        \input{src/1/multiplexagem-e-comutação}
+        \input{src/1/débitos-e-atraso}
+        \input{src/1/arquitetura-em-camadas}
+
+    \clearpage
+    \section{2. Camada de Aplicação}\label{sec:application-layer}%
+        \input{src/2/network-application-architecture}
+        \input{src/2/the-web-and-http}
+        \input{src/2/email}
+        \input{src/2/DNS}
+        \input{src/2/socket-programming}
+
+    \clearpage\addtocontents{toc}{\protect\newpage}
+    \section{3. Camada de Transporte}\label{sec:transport-layer}%
+        \input{src/3/transport-layer-overview}
+        \input{src/3/multiplexação-desmultiplexação}
+        \input{src/3/UDP}
+        \input{src/3/reliable-data-transfer}
+        \input{src/3/TCP}
+        \input{src/3/congestion-control}
+
+    \clearpage
+    \section{4. Camada de Rede}\label{sec:network-layer}%
+        \input{src/4/overview}
+        \input{src/4/control-plane}
+        \input{src/4/data-plane}
+
+    \clearpage\addtocontents{toc}{\protect\newpage}
+    \section{5. Camada de Ligação de Dados}\label{sec:link-layer}%
+        \input{src/5/overview}
+        \input{src/5/error-control}
+        \input{src/5/multiple-access-links}
+        \input{src/5/MAC-address}
+        \input{src/5/switches}
+        \input{src/5/VLAN}
+        \input{src/5/WLAN}
+        
+%\iffalse
+%\fi
+
+    %% appendix
+    \appendix
+    \input{src/appendix/A}
+    \input{src/appendix/B}
+    \input{src/appendix/C}
+    \input{src/appendix/D}
+    \input{src/appendix/E}
+
+    %% refs
+    \clearpage
+    \bibliographystyle{unsrtnat}
+    \nocite{*}
+    {\footnotesize%
+    \bibliography{refs}}
+    %% attachments
+    %\newpage
+    %\input{appendix}
+
+\end{document}%

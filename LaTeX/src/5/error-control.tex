@@ -1,0 +1,47 @@
+%//==============================--@--==============================//%
+\subsection[Link Layer Error-Detection and -Correction Techniques]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$} Link Layer Error-Detection and -Correction Techniques}
+\label{subsec:link-layer-error-detection-correction}
+
+Error-detection and -correction techniques in the link layer are essential for maintaining data integrity during transmission between physically connected neighboring nodes. These techniques detect and correct bit errors in the link-layer frame.
+
+%//==============================--@--==============================//%
+\subsubsection[Parity Checking]{$\pmb{\rightarrow}$ Parity Checking}
+
+Parity checking is a basic error-detection technique that adds a single parity bit to the data being transmitted. The parity bit is set to make the total number of 1s in the data either even (even parity) or odd (odd parity). At the receiving end, the parity bit is checked to ensure that the total number of 1s is consistent with the selected parity scheme. If there is a discrepancy, an error is detected.
+
+%//==============================--@--==============================//%
+\subsubsection[Checksumming]{$\pmb{\rightarrow}$ Checksumming}
+
+Checksumming is a more advanced error-detection technique that has been previously explained in the context of the \hyperref[subsubsec:checksum]{transport layer for UDP and TCP}. In this method, a checksum is calculated by the sender based on the data being transmitted and is then included with the transmitted data. At the receiving end, the receiver calculates the checksum based on the received data and compares it to the received checksum. If the calculated and received checksums do not match, an error is detected.
+
+%//==============================--@--==============================//%
+\subsubsection[Cyclic Redundancy Checks (CRC)]{$\pmb{\rightarrow}$ Cyclic Redundancy Checks (CRC)}
+
+Cyclic Redundancy Check (CRC) is an error-detection technique widely used in computer networks. It works by interpreting the bit string as a polynomial and performing modulo-2 arithmetic operations. The sender calculates CRC bits (\texttt{R}) and appends them to the data (\texttt{D}) to create a bit pattern divisible by a generator (\texttt{G}). The receiver checks the received data for errors by dividing the received bit pattern by \texttt{G} and verifying if the remainder is zero.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.85\linewidth]{img/5/CRC.png}
+    \caption{CRC (Cyclic Redundancy Check) \cite{Kurose2017}}
+    \label{fig:CRC}
+\end{figure}
+
+\begin{enumerate}
+    \item Choose a generator (\texttt{G}) with \texttt{r}+1 bits and make sure the leftmost bit of \texttt{G} is 1.
+    \item Calculate the CRC bits (\texttt{R}) by finding the remainder of the division $\texttt{D} \cdot 2^\texttt{r}/\texttt{G}$, where \texttt{D} is the data bits.
+    \item Append the CRC bits (\texttt{R}) to the data (\texttt{D}) and send the d+r bit pattern.
+    \item The receiver divides the received $\texttt{d}+\texttt{r}$ bits by \texttt{G} using modulo-2 arithmetic.
+    \item If the remainder is nonzero, an error has occurred; otherwise, the data is accepted as correct.
+\end{enumerate}
+
+\hrule
+
+\begin{quote}
+    \noindent ``International standards have been defined for 8-, 12-, 16-, and 32-bit generators (\texttt{G}). The CRC-32 32-bit standard, adopted in several link-level IEEE protocols, uses a generator:
+    $$
+        \texttt{G}_\text{ CRC-32} = \texttt{100000100110000010001110110110111}
+    $$
+    \noindent Each CRC standard can detect burst errors of fewer than $\texttt{r}+1$ bits, and under appropriate assumptions, a burst of length greater than $\texttt{r}+1$ bits is detected with a probability of $1 - 0.5^\texttt{r}$. Furthermore, each CRC standard can detect any odd number of bit errors.''\cite{Kurose2017}
+\end{quote}
+
+%//==============================--@--==============================//%

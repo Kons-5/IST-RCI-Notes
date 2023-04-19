@@ -1,0 +1,53 @@
+\renewcommand{\thefigure}{E\arabic{figure}}
+\renewcommand{\thetable}{E\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+%//==============================--@--==============================//%
+\clearpage
+\section{Appendix E: IP Header Field - Transport-Layer Protocol}
+\label{appendixE}
+{
+\setlength{\tabcolsep}{16pt}
+
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{tabularx}{\textwidth}{ccX}
+        \toprule
+        \textbf{Protocol Number} & \textbf{Protocol} & \multicolumn{1}{c}{\textbf{Usage}} \\
+        \midrule
+        1 & \textbf{ICMP} & Internet Control Message Protocol \\
+        2 & IGMP & Internet Group Management Protocol \\
+        6 & \textbf{TCP} & Transmission Control Protocol \\
+        8 & EGP & Exterior Gateway Protocol \\
+        17 & \textbf{UDP} & User Datagram Protocol \\
+        27 & RDP & Reliable Datagram Protocol \\
+        41 & \textbf{IPv6} & IPv6 encapsulation \\
+        47 & GRE & Generic Routing Encapsulation \\
+        50 & ESP & Encapsulating Security Payload \\
+        51 & AH & Authentication Header \\
+        57 & SKIP & Simple Key Management for IP \\
+        89 & \textbf{OSPF} & Open Shortest Path First \\
+        97 & EtherIP & Ethernet within IP Encapsulation \\
+        112 & VRRP & Virtual Router Redundancy Protocol \\
+        115 & L2TP & Layer 2 Tunneling Protocol \\
+        118 & STP & Simple Transport Protocol \\
+        132 & SCTP & Stream Control Transmission Protocol \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Expanded IP header field transport-layer protocol for the payload.}
+    \label{tab:expanded_ip_protocol_numbers}
+\end{table}
+}
+
+\noindent \textbf{Note:} The IP header contains a field named "Protocol", which is 8 bits long. This field is used to identify the transport-layer protocol carried in the IP datagram's payload. The protocol numbers are assigned by the \textbf{Internet Assigned Numbers Authority (IANA)} to standardize and maintain consistency in the identification of different transport-layer protocols.
+
+\vspace{-0.25em}
+\begin{itemize}
+    \item The IP protocol number helps routers and end systems identify the appropriate transport-layer protocol and process the IP datagram's payload accordingly. It ensures the correct protocol is used to handle the payload and maintain communication between the source and destination systems.
+
+    \item \textbf{Future protocols:} The 8-bit field for protocol identification allows for up to 256 different protocol numbers. While not all of these numbers are currently assigned, this allows for the development and assignment of new transport-layer protocols in the future.
+\end{itemize}
+
+%//==============================--@--==============================//%

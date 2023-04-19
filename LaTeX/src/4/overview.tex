@@ -1,0 +1,45 @@
+%//==============================--@--==============================//%
+\subsection[4.1 Visão Geral]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$} Visão Geral}
+\label{subsec:network-layer-overview}
+
+``The primary role of the network layer is deceptively simple---to move packets from a sending host to a receiving host.''\cite{Kurose2017}
+
+%//==============================--@--==============================//%
+\subsubsection[4.1.1 Network Layer Functions]{$\pmb{\rightarrow}$ Network Layer Functions}
+
+Major functions of the network layer include:
+
+\begin{enumerate}
+    \item \textbf{Addressing:} Assigning unique IP addresses to devices for identification and communication within a network.
+    \item \textbf{Routing:} Selecting the best path for data transmission between devices based on various routing algorithms.
+    \item \textbf{Forwarding:} Transferring data packets from a router's input to the appropriate output based on the destination address.
+    \item \textbf{Packetization:} Encapsulating data into packets for transmission, including fragmentation and reassembly when necessary.
+    \item \textbf{Error control:} Detecting and correcting transmission errors.
+\end{enumerate}
+
+%//==============================--@--==============================//%
+\subsubsection[4.1.2 Forwarding and Routing: The Data and Control Planes]{$\pmb{\rightarrow}$ Forwarding and Routing: The Data and Control Planes}
+
+\begin{itemize}
+    \item \textbf{Data Plane:} \\
+    The data plane is responsible for forwarding packets from one router to another. It refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface. This function is usually performed at ve- ry short timescales (typically a few nanoseconds) and is typically implemented in hardware.
+    
+    \item \textbf{Control Plane:} \\
+    The control plane is responsible for determining the routes or paths taken by packets as they flow from a sender to a receiver. Routing algorithms are implemented in the control plane of the network layer. These algorithms operate at longer timescales (typically seconds) and are often implemented in software.
+    
+    \begin{enumerate}[nolistsep]
+        \item \textbf{Traditional Approach:} \\
+        In the traditional approach, both forwarding (data plane) and routing (control plane) functions are contained within a router. A routing algorithm runs in each router and communicates with routing algorithms in other routers to compute the values for its forwarding table.
+        
+        \item \textbf{SDN Approach:} \\
+        In the Software-Defined Networking (SDN) approach, the control-plane routing functionality is separated from the physical router. The routing device per- forms forwarding only, while a remote controller computes and distributes forwarding tables. The controller is implemented in software and might be managed by the ISP or some third party.
+    \end{enumerate}
+\end{itemize}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[4]{%
+    ``A key element in every network router is its \textbf{forwarding table}. A router forwards a packet by examining the value of one or more fields in the arriving packet’s header, and then using these header values to index into its forwarding table. The value stored in the forwarding table entry for those values indicates the outgoing link interface at that router to which that packet is to be forwarded.''\cite{Kurose2017}
+}
+\renewcommand*{\thefootnote}{\arabic{footnote}}
+
+%//==============================--@--==============================//%

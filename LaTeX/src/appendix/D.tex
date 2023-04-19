@@ -1,0 +1,61 @@
+\renewcommand{\thefigure}{D\arabic{figure}}
+\renewcommand{\thetable}{D\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+%//==============================--@--==============================//%
+\clearpage
+\section{Appendix D: TCP Header Flags and Optional Fields}
+\label{appendixD}
+{
+\setlength{\tabcolsep}{8pt}
+
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{tabularx}{\textwidth}{clX}
+        \toprule
+        \textbf{Flag} & \multicolumn{1}{c}{\textbf{Name}} & \multicolumn{1}{c}{\textbf{Usage}} \\
+        \midrule
+        URG & Urgent & Indicates that the Urgent Pointer field is significant \\
+        ACK & Acknowledge & Indicates that the Acknowledgment Number field is significant \\
+        PSH & Push & Instructs the receiving host to immediately pass the data to the application \\
+        RST & Reset & Resets the connection due to an error or an unreachable host \\
+        SYN & Synchronize & Used for establishing connections; synchronizes sequence numbers \\
+        FIN & Finish & Indicates that the sender has finished transmitting data \\
+        \bottomrule
+    \end{tabularx}
+    \caption{TCP header flags and their usage.}
+    \label{tab:tcp_header_flags}
+\end{table}
+}
+
+% Optional fields
+{
+\setlength{\tabcolsep}{8pt}
+
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{tabularx}{\textwidth}{clX}
+        \toprule
+        \textbf{Option} & \multicolumn{1}{c}{\textbf{Name}} & \multicolumn{1}{c}{\textbf{Usage}} \\
+        \midrule
+        MSS & Maximum Segment Size & Specifies the maximum segment size that the sender is willing to receive \\
+        WSOPT & Window Scale & Allows window sizes larger than 65,535 bytes by defining a scale factor \\
+        SACK & Selective Acknowledgment & Acknowledges non-contiguous blocks of data and reports gaps \\
+        TSopt & Timestamp & Used for round-trip time measurement and PAWS (Protect Against Wrapped Sequence numbers) \\
+        \bottomrule
+    \end{tabularx}
+    \caption{TCP optional fields and their usage.}
+    \label{tab:tcp_optional_fields}
+\end{table}
+}
+
+\vspace{-0.25em}
+\begin{itemize}
+    \item \textbf{Variable-length options:} Optional fields are variable in length and provide additional features, such as improved performance or error handling.
+    \item \textbf{Negotiation during connection establishment:} Certain options, like MSS and WSOPT, are negotiated during the three-way handshake process.
+\end{itemize}
+
+%//==============================--@--==============================//%

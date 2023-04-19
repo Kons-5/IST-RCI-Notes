@@ -1,0 +1,116 @@
+%//==============================--@--==============================//%
+\subsection[2.1 Arquiteturas de aplicação de redes]{\hspace*{0.075 em}\raisebox{0.2 em}{$\pmb{\drsh}$}  Arquiteturas de aplicação de redes}
+\label{subsec:arquitetura-aplicacao-redes}
+
+\begin{theo}[\underline{Application Architecture}]{def:AppArch}\label{def:AppArch}
+    ``The application architecture, on the other hand, is designed by the application developer and dictates how the application is structured over the various end systems. In choosing the application architecture, an application developer will likely draw on one of the two predominant architectural paradigms used in modern network applications: \textbf{the client-server architecture} or the \textbf{peer-to-peer (P2P)} architecture.''\cite{Kurose2017}
+\end{theo}
+
+%//==============================--@--==============================//%
+\subsubsection[2.1.1 Client-server architecture]{$\pmb{\rightarrow}$ \textit{Client-server architecture}}
+
+Em arquiteturas cliente-servidor (\textit{client-server architectures}) um servidor (\textit{always-on host}) \textbf{providência os seus serviços a múltiplos clientes}: ``A classic example is the Web application for which an always-on Web server services requests from browsers running on client hosts." onde \textbf{os clientes não comunicam diretamente entre si} (o servidor é responsável pela manutenção e comunicação entre clientes). Os servidores \textbf{possuem um IP fixo}, garantindo um fluxo de comunicação constante. Para garantir o processamento de um elevado tráfego de pedidos são utilizados \textit{data centers} que albergam múltiplos \textit{hosts}:
+
+\begin{quote}
+    ``The most popular Internet services—such as search engines (e.g., Google, Bing, Baidu), Internet commerce (e.g., Amazon, eBay, Alibaba), Web-based e-mail (e.g., Gmail and Yahoo Mail), social networking (e.g., Facebook, Instagram, Twitter, and WeChat)—employ one or more data centers."\cite{Kurose2017}
+\end{quote}
+
+%//==============================--@--==============================//%
+\subsubsection[2.1.2 Peer-to-Peer (P2P)]{$\pmb{\rightarrow}$ \textit{Peer-to-Peer (P2P)}}
+
+Em arquiteturas \textit{peer-to-peer} (P2P) a comunicação é independente de servidores. A aplicação procura estabelecer contacto direto entre pares de \textit{hosts} ligados intermitentemente designador por \textit{peers}. Estes \textit{host} residem nas máquinas dos utilizadores (e.g. casa, universidades, escritorios, ...). A comunicação P2P é dotada de \textit{self-scalability}:
+
+\begin{quote}
+    ``For example, in a P2P file-sharing application, although each peer generates workload by requesting files, each peer also adds service capacity to the system by distributing files to other peers."\cite{Kurose2017}
+\end{quote}
+
+\vspace{-0.5 em}
+\begin{table}[H]
+    \begin{tabularx}{\linewidth}{>{\parskip1ex}X@{\kern4\tabcolsep}>{\parskip1ex}X}
+    \toprule
+    \hfil\bfseries Client-server architecture
+    &
+    \hfil\bfseries Peer-to-Peer (P2P) 
+    \\\cmidrule(r{3\tabcolsep}){1-1}\cmidrule(l{-\tabcolsep}){2-2}
+    
+    %% separated by empty line or \par
+    O servidor é dependente de \textit{data centers} que necessitam de manutenção e energia.\par
+    Pagamento de \textit{recurring interconnection and bandwidth costs} na transmissão de dados.\par
+    Seguro e estável, face à arquitetura \textit{peer-to-peer}
+    &
+    
+    %% separated by empty line or \par
+    \textit{Cost efficient}, não dependente de infraestruturas de larga escala.\par
+    ``Face challenges of security, performance, and reliability due to their highly
+    decentralized structure."\par
+    \textit{Self-scalability}.
+    \\\bottomrule
+    \end{tabularx}
+    \caption{Pros \& cons dos tipos de arquitetura de aplicação abordados.}
+\end{table}
+%//==============================--@--==============================//%
+\subsubsection[2.1.3 Comunicação entre processos ]{$\pmb{\rightarrow}$ Comunicação entre processos}
+
+\begin{theo}[\underline{Processo (Process)}]{def:Processo}\label{def:Processo}
+    ``In the jargon of operating systems, it is not actually programs but processes that
+communicate. \textbf{A process can be thought of as a program that is running within an end
+system}. When processes are running on the same end system, they can communicate
+with each other with \textbf{interprocess communication}. Processes on two different end systems communicate with each other by \textbf{exchanging messages across the computer network}.''\cite{Kurose2017}
+\end{theo}
+
+\noindent Uma aplicação de rede consiste na troca de mensagens entre pares de processos. Cada par possui um processo designado cliente e outro servidor, mediante a tarefa desempenhada no início da sessão de comunicação:
+
+\begin{quote}
+    ``In the context of a communication session between a pair of processes, \textbf{the process that initiates the communication} (that is, initially contacts the other process at the beginning of the session) \textbf{is labeled as the client. The process that waits to be contacted to begin the session is the server}."
+\end{quote}
+
+\noindent Um processo envia e recebe mensagens da rede através de uma interface designada \textit{socket} que estabelece a ligação entre a camada de aplicação e a camada de transporte da qual o programador pouco controlo tem com exceção da escolha do protocolo em uso. Este tema será explorado na \hyperref[subsec:socket-programming]{secção 2.x}.
+
+%//==============================--@--==============================//%
+\subsubsection[2.1.4 Endereçamento de processos ]{$\pmb{\rightarrow}$ Endereçamento de processos}
+
+A identificação do processo de destino numa sessão de comunicação está dependente de dois identificadores:
+
+\paragraph[2.1.4.1 Endereço IP]{$\pmb{\star}$ Endereço IP:} Identifica o \textit{host} na internet.
+
+\begin{mdframed}
+    ``Internet addresses are binary numbers. They come in two flavors, corresponding to the two versions of the Internet Protocol that have been standardized. The most common is version 4 (IPv4); the other is version 6 (IPv6), which is just beginning to be deployed. IPv4 addresses are 32 bits long; because this is only enough to identify about 4 billion distinct destinations, they are not really big enough for today’s Internet. For that reason, IPv6 was introduced. IPv6 addresses are 128 bits long.''\cite{Donahoo-Kenneth2002}
+    
+    \vspace{1 em}
+    \noindent \textbf{Exemplo:} IPv4 – 193.136.128.169 \hspace*{0.75em} IPv6 – 2001:690:21c0:a::150
+\end{mdframed}
+
+\paragraph[2.1.4.2 Porto]{$\pmb{\star}$ Porto:} Especifica o processo de chegada (a socket de chegada) dentro do \textit{host}, já que este poderá estar a correr várias aplicações em simultâneo.
+
+\begin{mdframed}
+    ``Port numbers are the same in both IPv4 and IPv6: 16-bit unsigned binary numbers. Thus, each one is in the range 1 to 65,535 (0 is reserved)''\cite{Donahoo-Kenneth2002}
+\end{mdframed}
+
+%//==============================--@--==============================//%
+\subsubsection[2.1.5 Serviços fornecidos pela camada de transporte ]{$\pmb{\rightarrow}$ Serviços fornecidos pela camada de transporte}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\textbf{Category} & \textbf{Description} \\
+\hline
+\multirow{2}{*}{Reliable Data Transfer} & A transport-layer protocol guarantees that data sent by one end is correctly and completely delivered to the other end. \\
+\hline
+\multirow{4}{*}{Throughput} & A transport-layer protocol can provide a guaranteed available throughput at a specified rate, appealing to bandwidth-sensitive applications. Elastic applications can use any available throughput. \\
+\hline
+\multirow{3}{*}{Timing} & A transport-layer protocol can provide timing guarantees, ensuring data delivery within a specified time frame. This is essential for interactive real-time applications. \\
+\hline
+\multirow{3}{*}{Security} & A transport protocol can provide security services such as encryption, data integrity, and end-point authentication to protect data transmitted between processes. \\
+\hline
+\end{tabular}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.95\linewidth]{img/2/serviços-camada-transporte.png}
+    \caption{Requisitos de algumas aplicações de redes.\cite{Kurose2017}}
+    \label{fig:serviços-camada-transporte}
+\end{figure}
+
+\paragraph[2.1.5.1 Transmission Control Protocol (TCP)]{$\pmb{\star}$ Transmission Control Protocol (TCP)}\mbox{}\\[4pt]
+\noindent O protocolo TCP fornece um serviço orientado à sessão (connection-oriented) de transferência fiável (\textit{reliable data transfer}) e entrega sequencial de pacotes. Serviços orientados à sessão envolvem um processo de \textit{handshaking} entre cliente e servidor de modo a trocar informação de controlo e preparar ambos os lados para a transmissão de dados, esta transmissão é bidirecional. Possui um mecanismo de \textit{congestion control} e \textbf{não fornece garantias de atraso nem de débito}.
+
+\paragraph[2.1.5.2 User Datagram Protocol (UDP)]{$\pmb{\star}$ User Datagram Protocol (UDP)}\mbox{}\\[4pt]
+\noindent UDP é um protocolo de transporte \textit{lightweight} que providência serviços minimos e não envolve processo de \textit{handshaking} (é \textit{connectionless}) \textbf{não possui uma transferência fiável nem garante uma entrega sequencial de pacotes}.

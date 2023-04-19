@@ -1,0 +1,47 @@
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+%//==============================--@--==============================//%
+\clearpage
+\section{Appendix A: OSI Stack Model}
+\label{appendixA}
+{
+\setlength{\tabcolsep}{8pt}
+
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{tabularx}{\textwidth}{clX}
+        \toprule
+        \textbf{Layer} & \multicolumn{1}{c}{\textbf{Name}} & \multicolumn{1}{c}{\textbf{Function}} \\
+        \midrule
+        7 & Application & Provides the interface between the user and network services \\
+        6 & Presentation & Ensures data is in a readable format for the application layer \\
+        5 & Session & Establishes, manages, and terminates sessions between applications \\
+        4 & Transport & Provides reliable and ordered data transfer between processes \\
+        3 & Network & Manages addressing, routing, and path determination \\
+        2 & Data Link & Defines the protocol for transferring data across a physical link \\
+        1 & Physical & Transmits raw bits over the communication medium \\
+        \bottomrule
+    \end{tabularx}
+    \caption{OSI stack model layers and their functions.}
+    \label{tab:osi_layers}
+\end{table}
+}
+
+\noindent \textbf{Historical Remarks:} The Open Systems Interconnection (OSI) model was developed by the International Organization for Standardization (ISO) in the late 1970s and early 1980s. The objective was to create a standardized framework for the development and implementation of network protocols to enable interoperability between different systems and vendors.
+
+Although the OSI model has been largely replaced by the TCP/IP model in modern networking, it still serves as a useful conceptual tool to understand the various functions and layers involved in network communication. Many of the protocols defined in the OSI model remain relevant and are used in today's networks.
+
+\vspace{-0.25em}
+\begin{itemize}
+    \item \textbf{Layered Architecture:} The OSI model consists of seven layers, each with a distinct set of responsibilities. This layered architecture allows for separation of concerns, making it easier to design, develop, and troubleshoot network protocols.
+    
+    \item \textbf{Modularity:} The OSI model's modular design allows for the development and improvement of individual layers without impacting the entire system. This flexibility enables networks to evolve and adapt to new technologies and requirements.
+    
+    \item \textbf{Interoperability:} The OSI model promotes the development of interoperable network protocols by providing a common framework for their design. By adhering to the OSI model, different vendors and systems can communicate seamlessly, fostering a more open and interconnected networking environment.
+\end{itemize}
+
+%//==============================--@--==============================//%

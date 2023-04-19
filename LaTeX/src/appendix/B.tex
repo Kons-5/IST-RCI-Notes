@@ -1,0 +1,44 @@
+\renewcommand{\thefigure}{B\arabic{figure}}
+\renewcommand{\thetable}{B\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+%//==============================--@--==============================//%
+\clearpage
+\section{Appendix B: Universal Resource Locator (URL)}
+\label{appendixB}
+{
+URLs, or Universal Resource Locators, are a type of Uniform Resource Identifier (URI) that provide a means of locating and accessing resources on the World Wide Web. A URL is composed of different components that describe the resource's location and the method to access it.
+
+\begin{figure}[h!]
+    \newsavebox\myv
+    \begin{lrbox}{\myv}\begin{minipage}{\linewidth}\centering
+        \begin{verbatim}
+  scheme                  authority                    path        query       fragment
++-------+  +------------------------------------+  +---------+  +---------+  +---------+
+| https |  |   user:password@example.com:8080   |  |/path/to/|  |?query=42|  |#section1|
++-------+  +------------------------------------+  +---------+  +---------+  +---------+
+        \end{verbatim}
+    \end{minipage}\end{lrbox}
+
+    \resizebox{0.825\textwidth}{!}{\usebox\myv}
+    \caption{URL structure and its components.}
+    \label{fig:url_structure}
+\end{figure}
+
+\noindent The primary components of a URL include:
+\begin{itemize}
+    \item \textbf{Scheme:} The scheme specifies the protocol used to access the resource. Common schemes include HTTP (Hypertext Transfer Protocol), HTTPS (HTTP Secure), FTP (File Transfer Protocol), and mailto (for email addresses).
+    
+    \item \textbf{Authority:} The authority component is often composed of a username and password (optional) for authentication purposes, followed by the domain name (or IP address) of the server hosting the resource.
+    
+    \item \textbf{Port:} The port number, if specified, is used to connect to the server. If not provided, the default port for the specified scheme is used, e.g., 80 for HTTP or 443 for HTTPS.
+    
+    \item \textbf{Path:} The path represents the hierarchical structure of the resource on the server. It often corresponds to the directory and file structure of the server's filesystem.
+    
+    \item \textbf{Query:} The query component, if present, contains a series of key-value pairs separated by the `\&' symbol, which provides additional information for processing the resource request.
+    
+    \item \textbf{Fragment:} The fragment identifier, if specified, refers to a specific part or section within the resource, often used for navigation purposes.
+\end{itemize}
+
+%//==============================--@--==============================//%

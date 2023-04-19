@@ -1,0 +1,50 @@
+\renewcommand{\thefigure}{C\arabic{figure}}
+\renewcommand{\thetable}{C\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+%//==============================--@--==============================//%
+\clearpage
+\section{Appendix C: Reserved Ports}
+\label{appendixC}
+{
+\setlength{\tabcolsep}{16pt}
+
+\begin{table}[h!]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{tabularx}{\textwidth}{ccl}
+        \toprule
+        \textbf{Port Number} & \textbf{Protocol} & \multicolumn{1}{c}{\textbf{Usage}} \\
+        \midrule
+        20 & FTP & Data transfer \\ 
+        21 & FTP & Control (command) \\
+        22 & SSH & Secure Shell (remote login) \\
+        23 & Telnet & Remote login \\
+        25 & SMTP & Simple Mail Transfer Protocol \\
+        53 & DNS & Domain Name System \\
+        67 & DHCP & Dynamic Host Configuration Protocol (server) \\
+        68 & DHCP & Dynamic Host Configuration Protocol (client) \\
+        80 & HTTP & Hypertext Transfer Protocol \\
+        110 & POP3 & Post Office Protocol 3 \\
+        143 & IMAP & Internet Message Access Protocol \\
+        443 & HTTPS & HTTP Secure \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Reserved socket ports and their protocolar usage.}
+    \label{tab:reserved_ports}
+\end{table}
+}
+
+\noindent \textbf{Note:} In UNIX-based systems, port numbers below 1024 are considered "privileged" or "reserved" ports. These ports are locked for use by the operating system and system services, which often run with superuser (root) privileges. The main reason behind this restriction is security.
+
+\vspace{-0.25em}
+\begin{itemize}
+    \item \textbf{Root privileges for binding:} Lower-numbered ports are associated with essential system services (like SSH, FTP, and HTTP), they should be reserved for trusted applications and services that are authorized by the system administrator. By restricting access to these ports to only applications running with root privileges, the system minimizes the risk of unauthorized or rogue applications hijacking these critical ports, which could lead to security vulnerabilities or service disruption.
+    
+    \item \textbf{Least privilege principle:} After binding the port, the application may drop its root privileges to run as a less privileged user to reduce the potential impact of security vulnerabilities.
+    
+    \item \textbf{Ephemeral/unprivileged ports:} Ports with numbers above 1024 are available for non-privileged services and user applications, which can bind without root privileges.
+\end{itemize}
+
+%//==============================--@--==============================//%

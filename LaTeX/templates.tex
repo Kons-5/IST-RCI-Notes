@@ -1,0 +1,79 @@
+%% /* Imagem */
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 1\linewidth]{img/SECTION/IMAGEM.png}
+    \caption{CAPTION}
+    \label{fig:LABEL}
+\end{figure}
+
+%% /* Múltiplas imagens */
+\begin{figure}[ht] 
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{img/SECTION/IMAGEM.formato}
+        \caption{CAPTION} 
+        \label{fig:LABEL-a} 
+        \vspace{1ex}
+    \end{subfigure}%% 
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{img/SECTION/IMAGEM.formato} 
+        \caption{CAPTION} 
+        \label{fig:LABEL-b} 
+        \vspace{1ex}
+    \end{subfigure} 
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{img/SECTION/IMAGEM.formato}
+        \caption{CAPTION} 
+        \label{fig:LABEL-c} 
+        %%\vspace{4ex}
+    \end{subfigure}%% 
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{img/SECTION/IMAGEM.formato} 
+        \caption{CAPTION} 
+        \label{fig:LABEL-d} 
+        %%\vspace{4ex}
+    \end{subfigure} 
+    \caption{CAPTION}
+    \label{fig:LABEL}
+\end{figure}
+
+%% /* Wrapfigure */
+\begin{wrapfigure}[LINHAS]{l}{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.275\textwidth]{img/SECTION/IMAGEM.formato}
+    \caption{CAPTION}
+    \label{fig:LABEL}
+\end{wrapfigure}
+
+%% /* Imagem e caixa de texto lado a lado */
+\begin{tabular}{C{6.5cm}  L{6.5cm}}
+    \label{fig:LABEL}
+    \raisebox{-2.1\height}{\includegraphics[width = 1\linewidth]{img/SECTION/IMAGEM.formato}}\captionof{figure}{CAPTION} &\
+    \noindent\fcolorbox{black}{white}{%
+        \minipage[t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+            \textbf{À escuta?} $\rightarrow$ Teste 123 experiência
+        \endminipage}
+\end{tabular} 
+
+%% /* Caixa preta invólucro */
+{
+\mdfsetup{linewidth=2pt}
+
+\begin{mdframed}
+    \noindent Seja $\pmb{\dot{x}} = f(\pmb{x})$, não linear. A equação geral para a linearização de uma função multivariável $f(\pmb{x})$ num ponto $\pmb{p}$ é:
+    \vspace{-0.5em}
+    $$
+        f(\pmb{x}) \approx f(\pmb{p}) + \left.D f\right|_{\pmb{p}} \cdot (\pmb{x} - \pmb{p})
+    $$
+    
+    \noindent onde $\pmb{x}$ é o vetor de variáveis e $\pmb{p}$ o ponto de interesse para a linearização.
+\end{mdframed}
+}
+
+%% /* Caixa de Teorema/Definição */
+\begin{theo}[\underline{Teo/Def.:} <Designação> \cite{}]{teo/def:nome-unico}\label{teo/def:nome-unico}
+    >> Enunciar o Teorema/Definição
+\end{theo}
